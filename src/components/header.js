@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPlus, faInfoCircle, faEye, faSignOutAlt, faQuestionCircle, faChartBar } from '@fortawesome/free-solid-svg-icons'; 
+import { faHome, faPlus, faInfoCircle, faEye, faSignOutAlt, faQuestionCircle, faChartBar } from '@fortawesome/free-solid-svg-icons';
 
 const Header = ({ userRole, onLogout }) => {
   const [activetab, setactivetab] = useState("homes");
@@ -9,10 +9,9 @@ const Header = ({ userRole, onLogout }) => {
 
   useEffect(() => {
     const path = location.pathname.split('/')[1];
-    setactivetab(path || "homes"); // Default to 'homes' if no path is found
+    setactivetab(path || "homes"); 
   }, [location]);
 
-  // If user is not authenticated, navigate to login
   if (!userRole) {
     return <Navigate to="/login" />;
   }
@@ -47,13 +46,11 @@ const Header = ({ userRole, onLogout }) => {
         )}
 
         {userRole === 'admin' && (
-          <>
-            <Link to='/homes'>
-              <p className={`${activetab === 'homes' ? 'active' : ''}`} onClick={() => setactivetab('homes')}>
-                <FontAwesomeIcon icon={faEye} /> View
-              </p>
-            </Link>
-          </>
+          <Link to='/homes'>
+            <p className={`${activetab === 'homes' ? 'active' : ''}`} onClick={() => setactivetab('homes')}>
+              <FontAwesomeIcon icon={faEye} /> View
+            </p>
+          </Link>
         )}
 
         <Link to='/help'>
