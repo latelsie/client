@@ -1,0 +1,43 @@
+.view-container {
+    padding: 20px;
+}
+
+.button-group {
+    margin-bottom: 20px; /* Spacing below the button group */
+}
+
+.btn {
+    padding: 10px 15px;
+    margin-right: 10px; /* Space between buttons */
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.btn-add {
+    background-color: #28a745; /* Green for Add User button */
+}
+
+.btn-add:hover {
+    background-color: #218838; /* Darker shade on hover */
+}
+
+.card {
+    margin-top: 20px; /* Margin for card */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-size: 20px;
+    font-weight: bold;
+}

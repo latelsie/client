@@ -1,0 +1,30 @@
+.charts-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .chart-box {
+    flex: 1 1 45%; 
+    margin: 10px;  
+    max-width: 400px; 
+  }
+  
+  .dashboard-container {
+    padding: 20px;
+  }
+  
+  .stats-grid {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px; 
+  }
+  
+  .stats-box {
+    text-align: center;
+    border: 1px solid #ccc; 
+    padding: 20px; 
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  }
+  
