@@ -5,11 +5,12 @@ import './Dashboardchart.css';
 
 const DashboardChart = ({ salesData }) => {
   
-  const totalSales = 500; 
+  const totalSales = 150; 
   const totalCustomers = 150; 
   const totalDays = salesData.length; 
   const averageSales = (totalSales / totalDays).toFixed(2); 
 
+  
   const chartData = {
     labels: salesData.map(data => data.day),
     datasets: [
@@ -36,12 +37,34 @@ const DashboardChart = ({ salesData }) => {
         ],
         borderWidth: 1,
       },
+      {
+        label: 'Customers per Day',
+        data: salesData.map(data => data.customers),
+        backgroundColor: [
+          'rgba(34, 139, 34, 0.6)',  
+          'rgba(0, 100, 0, 0.6)',   
+          'rgba(50, 205, 50, 0.6)',   
+          'rgba(107, 142, 35, 0.6)',  
+          'rgba(144, 238, 144, 0.6)', 
+          'rgba(0, 128, 0, 0.6)',     
+          'rgba(173, 255, 47, 0.6)',  
+        ],
+        borderColor: [
+          'rgba(34, 139, 34, 1)',  
+          'rgba(0, 100, 0, 1)',     
+          'rgba(50, 205, 50, 1)',   
+          'rgba(107, 142, 35, 1)',  
+          'rgba(144, 238, 144, 1)', 
+          'rgba(0, 128, 0, 1)',     
+          'rgba(173, 255, 47, 1)',  
+        ],
+        borderWidth: 1,
+      },
     ],
   };
 
   return (
     <div className="dashboard-container">
-   
       <div className="stats-grid">
         <div className="stats-box">
           <p>Total Customers</p>
@@ -61,7 +84,6 @@ const DashboardChart = ({ salesData }) => {
         </div>
       </div>
 
-     
       <div className="charts-grid">
         <div className="chart-box">
           <h4>Bar Chart</h4>

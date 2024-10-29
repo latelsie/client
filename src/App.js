@@ -10,7 +10,7 @@ import Logout from './pages/Logout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DashboardChart from './pages/Dashboardchart';
-
+import UserProfile from './pages/userprofile'; 
 
 const PrivateRoute = ({ user, requiredRoles, children }) => {
   if (!user) {
@@ -18,11 +18,7 @@ const PrivateRoute = ({ user, requiredRoles, children }) => {
   }
 
   
-  if (!requiredRoles.includes(user.role)) {
-    return <Navigate to="/homes" />;  
-  }
-
-  return children;
+  return children; 
 };
 
 function App() {
@@ -36,13 +32,17 @@ function App() {
   ]);
 
   const handleLogin = (userData) => {
-    console.log("Logging in user:", userData); 
+    console.log("Logging in user:", userData);
     setUser(userData);
   };
 
   const handleLogout = () => {
     console.log("Logging out user");
     setUser(null);
+  };
+
+  const handleUpdateProfile = (updatedUser) => {
+    setUser(updatedUser); // Update the user state with new user data
   };
 
   return (
@@ -55,38 +55,43 @@ function App() {
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/logout" element={<Logout onLogout={handleLogout} />} />
 
-     
+          {/* Add UserProfile route */}
+          <Route path="/profile" element={
+            <PrivateRoute user={user}>
+              <UserProfile user={user} onUpdate={handleUpdateProfile} />
+            </PrivateRoute>
+          } />
+
           <Route path="/homes" element={
-            <PrivateRoute user={user} requiredRoles={["cashier", "admin"]}>
+            <PrivateRoute user={user}>
               <Homes />
             </PrivateRoute>
           } />
 
           <Route path="/dashboard" element={
-            <PrivateRoute user={user} requiredRoles={["cashier"]}>
+            <PrivateRoute user={user}>
               <DashboardChart salesData={salesData} />
             </PrivateRoute>
           } />
 
           <Route path="/add" element={
-            <PrivateRoute user={user} requiredRoles={["cashier"]}>
+            <PrivateRoute user={user}>
               <AddEdit />
             </PrivateRoute>
           } />
 
           <Route path="/view/:id" element={
-            <PrivateRoute user={user} requiredRoles={["cashier"]}>
+            <PrivateRoute user={user}>
               <View />
             </PrivateRoute>
           } />
 
           <Route path="/about" element={
-            <PrivateRoute user={user} requiredRoles={["cashier"]}>
+            <PrivateRoute user={user}>
               <About />
             </PrivateRoute>
           } />
 
-          
           <Route path="*" element={<Navigate to="/homes" />} />
         </Routes>
       </div>
