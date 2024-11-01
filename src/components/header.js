@@ -20,39 +20,13 @@ const Header = ({ userRole, onLogout }) => {
     <div className='header'>
       <Link to='/' className='logo'>H App</Link>
       <div className='header-right'>
-        <Link to='/homes'>
-          <p className={`${activetab === 'homes' ? 'active' : ''}`} onClick={() => setactivetab('homes')}>
-            <FontAwesomeIcon icon={faHome} /> Home
-          </p>
-        </Link>
-        <Link to='/add'>
-          <p className={`${activetab === 'add' ? 'active' : ''}`} onClick={() => setactivetab('add')}>
-            <FontAwesomeIcon icon={faPlus} /> Add
-          </p>
-        </Link>
-        <Link to='/about'>
-          <p className={`${activetab === 'about' ? 'active' : ''}`} onClick={() => setactivetab('about')}>
-            <FontAwesomeIcon icon={faInfoCircle} /> About
-          </p>
-        </Link>
-        <Link to='/dashboard'>
-          <p className={`${activetab === 'dashboard' ? 'active' : ''}`} onClick={() => setactivetab('dashboard')}>
-            <FontAwesomeIcon icon={faChartBar} /> Dashboard
-          </p>
-        </Link>
-        <Link to='/profile'>
-          <p className={`${activetab === 'profile' ? 'active' : ''}`} onClick={() => setactivetab('profile')}>
-            <FontAwesomeIcon icon={faUser} /> Profile
-          </p>
-        </Link>
-        <Link to='/help'>
-          <p className={`${activetab === 'help' ? 'active' : ''}`} onClick={() => setactivetab('help')}>
-            <FontAwesomeIcon icon={faQuestionCircle} /> Help
-          </p>
-        </Link>
-        <p className={`${activetab === 'logout' ? 'active' : ''}`} onClick={onLogout}>
-          <FontAwesomeIcon icon={faSignOutAlt} /> Logout
-        </p>
+        <Link to='/homes'><p className={`${activetab === 'homes' ? 'active' : ''}`}><FontAwesomeIcon icon={faHome} /> Home</p></Link>
+        <Link to='/add'><p className={`${activetab === 'add' ? 'active' : ''}`}><FontAwesomeIcon icon={faPlus} /> Add</p></Link>
+        <Link to='/about'><p className={`${activetab === 'about' ? 'active' : ''}`}><FontAwesomeIcon icon={faInfoCircle} /> About</p></Link>
+        <Link to='/dashboard'><p className={`${activetab === 'dashboard' ? 'active' : ''}`}><FontAwesomeIcon icon={faChartBar} /> Dashboard</p></Link>
+        <Link to='/profile'><p className={`${activetab === 'profile' ? 'active' : ''}`}><FontAwesomeIcon icon={faUser} /> Profile</p></Link>
+        <Link to='/help'><p className={`${activetab === 'help' ? 'active' : ''}`}><FontAwesomeIcon icon={faQuestionCircle} /> Help</p></Link>
+        <p className={`${activetab === 'logout' ? 'active' : ''}`} onClick={onLogout}><FontAwesomeIcon icon={faSignOutAlt} /> Logout</p>
       </div>
     </div>
   );

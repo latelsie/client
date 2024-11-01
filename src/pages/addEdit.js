@@ -14,14 +14,8 @@ const AddEdit = () => {
   const [state, setState] = useState(initialState);
   const [data, setData] = useState({});
   const { name, email, contact } = state;
-
   const navigate = useNavigate();
   const { id } = useParams();
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setState({ ...state, [name]: value });
-  };
 
   useEffect(() => {
     const dataRef = ref(database, 'contacts');
@@ -42,9 +36,13 @@ const AddEdit = () => {
     }
   }, [id, data]);
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setState({ ...state, [name]: value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!name || !email || !contact) {
       toast.error('Please provide all required fields.');
       return;
@@ -53,52 +51,19 @@ const AddEdit = () => {
     const dataRef = id ? ref(database, `contacts/${id}`) : push(ref(database, 'contacts'));
     set(dataRef, state)
       .then(() => {
-        toast.success(id ? 'Customer Updated Successfully' : 'Customer Added Successfully');
-        navigate('/'); 
+        toast.success(`Contact ${id ? "updated" : "added"} successfully`);
+        navigate('/homes');
       })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+      .catch((error) => toast.error(error.message));
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h1>{id ? "Update Customer" : "Add Customer"}</h1>
-        <label htmlFor='name'>Name</label>
-        <input
-          type="text"
-          id="name"
-          placeholder="Enter your Name"
-          name="name"
-          value={name || ""}
-          onChange={handleInputChange} 
-        />
-
-        <label htmlFor='email'>Email</label>
-        <input
-          type="email"
-          id="email"
-          placeholder="Enter your Email"
-          name="email"
-          value={email || ""}
-          onChange={handleInputChange} 
-        />
-
-        <label htmlFor='contact'>Contact</label>
-        <input
-          type="number"
-          id="contact"
-          placeholder="Enter your Contact"
-          name="contact"
-          value={contact || ""}
-          onChange={handleInputChange} 
-          required
-        />
-
-        <input type="submit" value={id ? "Update" : "Save"} />
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="name" value={name} onChange={handleInputChange} placeholder="Name" />
+      <input type="email" name="email" value={email} onChange={handleInputChange} placeholder="Email" />
+      <input type="text" name="contact" value={contact} onChange={handleInputChange} placeholder="Contact" />
+      <button type="submit">{id ? "Update" : "Save"}</button>
+    </form>
   );
 };
 

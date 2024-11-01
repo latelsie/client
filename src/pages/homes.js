@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { ref, onValue, remove } from 'firebase/database';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';  
-import { faSearch, faSort } from '@fortawesome/free-solid-svg-icons';  
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faSort } from '@fortawesome/free-solid-svg-icons';
 import database from '../firebase';
 
 const Homes = () => {
   const [data, setData] = useState({});
-  const [searchQuery, setSearchQuery] = useState("");  
-  const [sortField, setSortField] = useState("name"); 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortField, setSortField] = useState("name");
 
   useEffect(() => {
     const contactsRef = ref(database, 'contacts');
@@ -64,7 +64,7 @@ const Homes = () => {
       } else if (sortField === "email") {
         return data[a].email.localeCompare(data[b].email);
       } else {
-        return 0;  
+        return 0;
       }
     });
 
