@@ -1,8 +1,7 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faPlus, faInfoCircle, faEye, faSignOutAlt, faQuestionCircle, faChartBar, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faPlus, faInfoCircle, faChartBar, faUser, faQuestionCircle, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Header = ({ userRole, onLogout }) => {
   const [activetab, setactivetab] = useState("homes");
@@ -60,4 +59,3 @@ const Header = ({ userRole, onLogout }) => {
 };
 
 export default Header;
-

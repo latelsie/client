@@ -14,17 +14,15 @@ const AddEdit = () => {
   const [state, setState] = useState(initialState);
   const [data, setData] = useState({});
   const { name, email, contact } = state;
-  
+
   const navigate = useNavigate();
   const { id } = useParams();
 
-  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setState({ ...state, [name]: value });
   };
 
- 
   useEffect(() => {
     const dataRef = ref(database, 'contacts');
     onValue(dataRef, (snapshot) => {
@@ -36,7 +34,6 @@ const AddEdit = () => {
     });
   }, []);
 
-
   useEffect(() => {
     if (id && data[id]) {
       setState(data[id]);
@@ -45,17 +42,14 @@ const AddEdit = () => {
     }
   }, [id, data]);
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    
     if (!name || !email || !contact) {
       toast.error('Please provide all required fields.');
       return;
     }
 
-    
     const dataRef = id ? ref(database, `contacts/${id}`) : push(ref(database, 'contacts'));
     set(dataRef, state)
       .then(() => {
@@ -109,4 +103,3 @@ const AddEdit = () => {
 };
 
 export default AddEdit;
-
